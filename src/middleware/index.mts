@@ -1,1 +1,1 @@
-export { amapProxy } from './amap-proxy.mts'
+export { amapProxy } from './amap-proxy.mjs'

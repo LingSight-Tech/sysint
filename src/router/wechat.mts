@@ -1,7 +1,7 @@
 import Router from '@koa/router'
-import { defaultWechatService as wechatService } from '../integration/wx.mts'
-import { BusinessException } from '../error/error.mts'
-import { defaultDistributedSessionCache as sessionCache } from '../integration/cache.mts'
+import { defaultWechatService as wechatService } from '../integration/wx.mjs'
+import { BusinessException } from '../error/error.mjs'
+import { defaultDistributedSessionCache as sessionCache } from '../integration/cache.mjs'
 
 export const wechatRouter = new Router()
 const ONE_WEEK_MILLS = 7 * 24 * 60 * 60 * 1000

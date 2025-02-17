@@ -1,6 +1,5 @@
 import Koa from 'koa'
-import Router from '@koa/router'
-import bodyParser from '@koa/bodyparser'
+import { bodyParser } from '@koa/bodyparser'
 import cors from '@koa/cors'
 import { defaultStaticJsonFileConfigCenter as config } from './infra/config.mjs'
 import { router } from './router/index.mjs'

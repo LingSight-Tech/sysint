@@ -1,4 +1,4 @@
-import { defaultStaticJsonFileConfigCenter as config } from "./config.mts"
+import { defaultStaticJsonFileConfigCenter as config } from "./config.mjs"
 
 export const logger = {
   info: (message: string) => {

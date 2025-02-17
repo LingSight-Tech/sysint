@@ -1,5 +1,5 @@
 import COS from 'cos-nodejs-sdk-v5'
-import { defaultStaticJsonFileConfigCenter as config } from '../infra/config.mts'
+import { defaultStaticJsonFileConfigCenter as config } from '../infra/config.mjs'
 
 class CosService {
   private cos: COS

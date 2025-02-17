@@ -1,5 +1,5 @@
 import proxy from 'koa-proxies'
-import { defaultStaticJsonFileConfigCenter as config } from '../infra/config.mts'
+import { defaultStaticJsonFileConfigCenter as config } from '../infra/config.mjs'
 
 export const amapProxy = proxy('/_AMapService', {
   target: 'https://restapi.amap.com/',

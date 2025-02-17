@@ -1,5 +1,5 @@
 import { createClient, RedisClientType } from 'redis'
-import { defaultStaticJsonFileConfigCenter as config } from '../infra/config.mts';
+import { defaultStaticJsonFileConfigCenter as config } from '../infra/config.mjs';
 
 export interface DistributedCache {
   init(): Promise<void>;
@@ -9,13 +9,13 @@ export interface DistributedCache {
 
 export class RedisDistributedCache implements DistributedCache {
   private redis: RedisClientType;
-  constructor(private config: { host: string, port: number, username: string, password: string, db: number }) { }
-
-  async init() {
+  constructor(private config: { host: string, port: number, username: string, password: string, db: number }) {
     this.redis = createClient({
       url: `redis://${this.config.username ? this.config.username + ':' + this.config.password + '@' : ''}${this.config.host}:${this.config.port}/${this.config.db}`
     })
+  }
 
+  async init() {
     this.redis.on('error', (err) => {
       console.error('Redis error: ', err)
       process.exit(1)

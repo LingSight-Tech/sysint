@@ -1,5 +1,5 @@
 import Router from '@koa/router'
-import { defaultCosService as cosService } from '../integration/cos.mts'
+import { defaultCosService as cosService } from '../integration/cos.mjs'
 import { v4 as uuid } from 'uuid'
 
 export const filesRouter = new Router()

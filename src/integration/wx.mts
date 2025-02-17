@@ -1,6 +1,6 @@
-import { BusinessException } from "../error/error.mts"
-import { defaultStaticJsonFileConfigCenter as config } from "../infra/config.mts"
-import { logger } from '../infra/logger.mts'
+import { BusinessException } from "../error/error.mjs"
+import { defaultStaticJsonFileConfigCenter as config } from "../infra/config.mjs"
+import { logger } from '../infra/logger.mjs'
 
 interface WechatMiniProgramLoginResponse {
   session_key: string
