@@ -1,0 +1,1 @@
+export { amapProxy } from './amap-proxy.mts'
