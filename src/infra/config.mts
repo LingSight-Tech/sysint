@@ -44,5 +44,5 @@ class StaticJsonFileConfigCenter implements ConfigCenter {
   off(id: number): void { }
 }
 
-export const defaultStaticJsonFileConfigCenter: ConfigCenter = new StaticJsonFileConfigCenter(path.resolve(__dirname, '../const/config.json'));
+export const defaultStaticJsonFileConfigCenter: ConfigCenter = new StaticJsonFileConfigCenter(path.resolve(__dirname, '../../config/config.json'));
 await defaultStaticJsonFileConfigCenter.init();

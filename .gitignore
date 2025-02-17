@@ -1,4 +1,4 @@
 node_modules
-src/const/config.json
+config/config.json
 .vscode
 dist
