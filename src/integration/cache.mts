@@ -35,7 +35,7 @@ export class RedisDistributedCache implements DistributedCache {
   }
 }
 
-export const defaultDistributedSessionCache: DistributedCache = new RedisDistributedCache({
+export const defaultDistributedCache: DistributedCache = new RedisDistributedCache({
   host: config.get('session-cache.redis.host'),
   port: config.get('session-cache.redis.port'),
   username: config.get('session-cache.redis.username'),
@@ -43,4 +43,4 @@ export const defaultDistributedSessionCache: DistributedCache = new RedisDistrib
   db: config.get('session-cache.redis.db')
 })
 
-await defaultDistributedSessionCache.init()
+await defaultDistributedCache.init()

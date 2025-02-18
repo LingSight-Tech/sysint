@@ -1,7 +1,8 @@
 import Router from '@koa/router'
 import { defaultWechatService as wechatService } from '../integration/wx.mjs'
 import { BusinessException } from '../error/error.mjs'
-import { defaultDistributedSessionCache as sessionCache } from '../integration/cache.mjs'
+import { defaultDistributedCache as store } from '../integration/cache.mjs'
+import { uuid } from '../util/random.mjs'
 
 export const wechatRouter = new Router()
 const ONE_WEEK_MILLS = 7 * 24 * 60 * 60 * 1000
@@ -19,8 +20,8 @@ wechatRouter.post('/login', async (ctx, next) => {
 
   try {
     const result = await wechatService.login(ctx.request.body?.code)
-    const token = Math.random().toString(36).substring(2)
-    await sessionCache.set('session:' + token, JSON.stringify({
+    const token = uuid()
+    await store.set('session:' + token, JSON.stringify({
       sessionKey: result.sessionKey,
       unionId: result.unionId,
       openId: result.openId
@@ -50,3 +51,9 @@ wechatRouter.post('/login', async (ctx, next) => {
     }
   }
 })
+
+export interface UserSession {
+  sessionKey: string
+  unionId: string
+  openId: string
+}
