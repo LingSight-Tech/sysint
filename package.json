@@ -23,6 +23,7 @@
     "cos-nodejs-sdk-v5": "^2.14.6",
     "koa": "^2.15.4",
     "koa-proxies": "^0.12.4",
+    "node-fetch": "^3.3.2",
     "redis": "^4.7.0",
     "uuid": "^11.0.5"
   }

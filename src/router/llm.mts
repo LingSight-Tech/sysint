@@ -5,6 +5,7 @@ import { defaultStaticJsonFileConfigCenter as config } from '../infra/config.mjs
 import { uuid } from '../util/random.mjs'
 import { UserSession } from './wechat.mjs'
 import { logger } from '../infra/logger.mjs'
+import fetch from 'node-fetch'
 
 const conversationRouter = new Router()
 
@@ -133,7 +134,7 @@ conversationRouter.post('/completions', async (ctx, next) => {
     ctx.type = 'text/event-stream'
     ctx.status = 200
 
-    const reader = response.body?.getReader()
+    const reader = response.body
     if (!reader) {
       ctx.status = 500
       ctx.body = {
@@ -153,12 +154,8 @@ conversationRouter.post('/completions', async (ctx, next) => {
       }],
       role: 'assistant'
     }
-    let done, value
-    while ({ done, value } = await reader.read()) {
-      if (done) {
-        break
-      }
-      let chunk = decoder.decode(value)
+    for await (let chunk of reader) {
+      chunk = chunk.toString()
       if (!chunk.startsWith('data:')) {
         continue
       }
@@ -184,6 +181,7 @@ conversationRouter.post('/completions', async (ctx, next) => {
     const conversations: string[] = safeParseArray(conversationsSerialized)
     store.set(`all-conversations:${session.openId}`, JSON.stringify([...conversations, conversationId]), ONE_WEEK_MILLS)
   } catch (e) {
+    logger.error('Failed to get a valid response from the DeepSeek API: ' + e)
     if (e instanceof BusinessException) {
       ctx.status = e.status
       ctx.body = {
