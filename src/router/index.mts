@@ -4,6 +4,7 @@ import { wechatRouter } from './wechat.mjs'
 import { filesRouter } from './files.mjs'
 import { defaultDistributedCache as store } from '../integration/cache.mjs'
 import { conversationRouter } from './llm.mjs'
+import { auth } from '../middleware/auth.mjs'
 
 export const router = new Router()
 
@@ -16,5 +17,6 @@ router.get('/hello', async (ctx, next) => {
 })
 
 router.use('/api', wechatRouter.routes(), wechatRouter.allowedMethods())
+router.use(auth)
 router.use('/api', filesRouter.routes(), filesRouter.allowedMethods())
 router.use('/api', conversationRouter.routes(), conversationRouter.allowedMethods())
