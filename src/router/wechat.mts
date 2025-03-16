@@ -1,12 +1,11 @@
 import Router from '@koa/router'
 import { defaultWechatService as wechatService } from '../integration/wx.mjs'
 import { BusinessException } from '../error/error.mjs'
-import { defaultDistributedCache as store } from '../integration/cache.mjs'
+import { defaultStorage as store } from '../infra/storage.mjs'
 import { uuid } from '../util/random.mjs'
 import { logger } from '../infra/logger.mjs'
 
 export const wechatRouter = new Router()
-const ONE_WEEK_MILLS = 7 * 24 * 60 * 60 * 1000
 
 wechatRouter.post('/login', async (ctx, next) => {
   if (!ctx.request.body?.code) {
@@ -22,11 +21,16 @@ wechatRouter.post('/login', async (ctx, next) => {
   try {
     const result = await wechatService.login(ctx.request.body?.code)
     const token = uuid()
-    await store.set('session:' + token, JSON.stringify({
-      sessionKey: result.sessionKey,
-      unionId: result.unionId,
-      openId: result.openId
-    }), ONE_WEEK_MILLS)
+    const user = await store.getUserByUnionId(result.unionId)
+    if (!user) {
+      await store.createUser({
+        openId: result.openId,
+        unionId: result.unionId,
+        sessionKey: token
+      })
+    } else {
+      await store.updateUserSessionKey(result.unionId, token)
+    }
 
     ctx.body = {
       success: true,

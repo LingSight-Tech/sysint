@@ -1,6 +1,14 @@
 import proxy from 'koa-proxies'
-import { defaultDistributedCache as store } from '../integration/cache.mjs'
+import { defaultStorage as store, User } from '../infra/storage.mjs'
 import Koa from 'koa'
+
+declare module 'koa' {
+  interface Context {
+    state: {
+      user: User
+    }
+  }
+}
 
 export const auth: Koa.Middleware = async (ctx, next) => {
   // token from header
@@ -23,8 +31,8 @@ export const auth: Koa.Middleware = async (ctx, next) => {
     token = token.substring(7)
   }
 
-  const session = await store.get('session:' + token)
-  if (!session) {
+  const user = await store.getUserBySessionKey(token)
+  if (!user) {
     ctx.status = 401
     ctx.body = {
       success: false,
@@ -34,6 +42,6 @@ export const auth: Koa.Middleware = async (ctx, next) => {
     return
   }
 
-  ctx.state.userSession = JSON.parse(session)
+  ctx.state.user = user
   await next()
 }

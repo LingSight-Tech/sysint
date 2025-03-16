@@ -1,17 +1,10 @@
 import fs from 'fs/promises'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { ConfigCenter, ConfigChangeCallback } from './types.js';
 
 const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
 const __dirname = path.dirname(__filename); // get the name of the directory
-
-interface ConfigCenter {
-  init(): Promise<void>
-  get(key: string): any
-  set(key: string, value: any): void
-  on(key: string, callback: Function): number
-  off(id: number): void
-}
 
 class StaticJsonFileConfigCenter implements ConfigCenter {
   private store: Record<string, object> = {};
@@ -33,16 +26,12 @@ class StaticJsonFileConfigCenter implements ConfigCenter {
     return this.store[key];
   }
 
-  set(key: string, value: any): void {
-    this.store[key] = value;
-  }
-
-  on(key: string, callback: Function): number {
+  on(key: string, callback: ConfigChangeCallback): number {
     return -1;
   }
 
   off(id: number): void { }
 }
 
-export const defaultStaticJsonFileConfigCenter: ConfigCenter = new StaticJsonFileConfigCenter(path.resolve(__dirname, '../../config/config.json'));
+export const defaultStaticJsonFileConfigCenter: ConfigCenter = new StaticJsonFileConfigCenter(path.resolve(__dirname, '../../../config/config.json'));
 await defaultStaticJsonFileConfigCenter.init();

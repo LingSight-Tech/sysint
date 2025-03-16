@@ -1,5 +1,5 @@
 import { BusinessException } from "../error/error.mjs"
-import { defaultStaticJsonFileConfigCenter as config } from "../infra/config.mjs"
+import { defaultStaticJsonFileConfigCenter as config } from "../infra/config/bootstrap.mjs"
 import { logger } from '../infra/logger.mjs'
 import fetch from 'node-fetch'
 

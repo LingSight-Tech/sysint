@@ -26,6 +26,9 @@ importers:
       koa-proxies:
         specifier: ^0.12.4
         version: 0.12.4(koa@2.15.4)
+      mysql2:
+        specifier: ^3.13.0
+        version: 3.13.0
       node-fetch:
         specifier: ^3.3.2
         version: 3.3.2
@@ -291,6 +294,10 @@ packages:
   aws-sign2@0.7.0:
     resolution: {integrity: sha1-tG6JCTSpWR8tL2+G1+ap8bP+dqg=, tarball: https://artifactory.devops.xiaohongshu.com/artifactory/api/npm/npm-public/aws-sign2/download/aws-sign2-0.7.0.tgz}
 
+  aws-ssl-profiles@1.1.2:
+    resolution: {integrity: sha512-NZKeq9AfyQvEeNlN0zSYAaWrmBffJh3IELMZfRpJVWgrpEbtEpnjvzqBPf+mxoI287JohRDoa+/nsfqqiZmF6g==, tarball: https://artifactory.devops.xiaohongshu.com/artifactory/api/npm/npm-public/aws-ssl-profiles/-/aws-ssl-profiles-1.1.2.tgz}
+    engines: {node: '>= 6.0.0'}
+
   aws4@1.13.2:
     resolution: {integrity: sha512-lHe62zvbTB5eEABUVi/AwVh0ZKY9rMMDhmm+eeyuuUQbQ3+J+fONVQOZyj+DdrvD4BY33uYniyRJ4UJIaSKAfw==, tarball: https://artifactory.devops.xiaohongshu.com/artifactory/api/npm/npm-public/aws4/-/aws4-1.13.2.tgz}
 
@@ -385,6 +392,10 @@ packages:
 
   delegates@1.0.0:
     resolution: {integrity: sha1-hMbhWbgZBP3KWaDvRM2HDTElD5o=, tarball: https://artifactory.devops.xiaohongshu.com/artifactory/api/npm/npm-public/delegates/download/delegates-1.0.0.tgz}
+
+  denque@2.1.0:
+    resolution: {integrity: sha1-6T4aZWn7XmbxajwqKWRhfTSdarE=, tarball: https://artifactory.devops.xiaohongshu.com/artifactory/api/npm/npm-public/denque/download/denque-2.1.0.tgz}
+    engines: {node: '>=0.10'}
 
   depd@1.1.2:
     resolution: {integrity: sha1-m81S4UwJd2PnSbJ0xDRu0uVgtak=, tarball: https://artifactory.devops.xiaohongshu.com/artifactory/api/npm/npm-public/depd/download/depd-1.1.2.tgz}
@@ -499,6 +510,9 @@ packages:
   function-bind@1.1.2:
     resolution: {integrity: sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==, tarball: https://artifactory.devops.xiaohongshu.com/artifactory/api/npm/npm-public/function-bind/-/function-bind-1.1.2.tgz}
 
+  generate-function@2.3.1:
+    resolution: {integrity: sha1-8GlhdpDBDIaOc7hGV0Z2T5fDR58=, tarball: https://artifactory.devops.xiaohongshu.com/artifactory/api/npm/npm-public/generate-function/download/generate-function-2.3.1.tgz}
+
   generic-pool@3.9.0:
     resolution: {integrity: sha1-NvSmeOlj9P24cH6rBQgjq8To9eQ=, tarball: https://artifactory.devops.xiaohongshu.com/artifactory/api/npm/npm-public/generic-pool/download/generic-pool-3.9.0.tgz}
     engines: {node: '>= 4'}
@@ -570,6 +584,10 @@ packages:
     resolution: {integrity: sha1-ICK0sl+93CHS9SSXSkdKr+czkIs=, tarball: https://artifactory.devops.xiaohongshu.com/artifactory/api/npm/npm-public/iconv-lite/download/iconv-lite-0.4.24.tgz}
     engines: {node: '>=0.10.0'}
 
+  iconv-lite@0.6.3:
+    resolution: {integrity: sha1-pS+AvzjaGVLrXGgXkHGYcaGnJQE=, tarball: https://artifactory.devops.xiaohongshu.com/artifactory/api/npm/npm-public/iconv-lite/download/iconv-lite-0.6.3.tgz}
+    engines: {node: '>=0.10.0'}
+
   inflation@2.1.0:
     resolution: {integrity: sha512-t54PPJHG1Pp7VQvxyVCJ9mBbjG3Hqryges9bXoOO6GExCPa+//i/d5GSuFtpx3ALLd7lgIAur6zrIlBQyJuMlQ==, tarball: https://artifactory.devops.xiaohongshu.com/artifactory/api/npm/npm-public/inflation/-/inflation-2.1.0.tgz}
     engines: {node: '>= 0.8.0'}
@@ -587,6 +605,9 @@ packages:
   is-obj@2.0.0:
     resolution: {integrity: sha1-Rz+wXZc3BeP9liBUUBjKjiLvSYI=, tarball: https://artifactory.devops.xiaohongshu.com/artifactory/api/npm/npm-public/is-obj/download/is-obj-2.0.0.tgz}
     engines: {node: '>=8'}
+
+  is-property@1.0.2:
+    resolution: {integrity: sha1-V/4cTkhHTt1lsJkR8msc1Ald2oQ=, tarball: https://artifactory.devops.xiaohongshu.com/artifactory/api/npm/npm-public/is-property/download/is-property-1.0.2.tgz}
 
   is-regex@1.2.1:
     resolution: {integrity: sha512-MjYsKHO5O7mCsmRGxWcLWheFqN9DJ/2TmngvjKXihe6efViPqc274+Fx/4fYj/r03+ESvBdTXK0V6tA3rgez1g==, tarball: https://artifactory.devops.xiaohongshu.com/artifactory/api/npm/npm-public/is-regex/-/is-regex-1.2.1.tgz}
@@ -650,6 +671,17 @@ packages:
   lodash.merge@4.6.2:
     resolution: {integrity: sha1-VYqlO0O2YeGSWgr9+japoQhf5Xo=, tarball: https://artifactory.devops.xiaohongshu.com/artifactory/api/npm/npm-public/lodash.merge/download/lodash.merge-4.6.2.tgz}
 
+  long@5.3.1:
+    resolution: {integrity: sha512-ka87Jz3gcx/I7Hal94xaN2tZEOPoUOEVftkQqZx2EeQRN7LGdfLlI3FvZ+7WDplm+vK2Urx9ULrvSowtdCieng==, tarball: https://artifactory.devops.xiaohongshu.com/artifactory/api/npm/npm-public/long/-/long-5.3.1.tgz}
+
+  lru-cache@7.18.3:
+    resolution: {integrity: sha1-95OJbg/Q6VSlnf3YLwdzgI32qok=, tarball: https://artifactory.devops.xiaohongshu.com/artifactory/api/npm/npm-public/lru-cache/download/lru-cache-7.18.3.tgz}
+    engines: {node: '>=12'}
+
+  lru.min@1.1.2:
+    resolution: {integrity: sha512-Nv9KddBcQSlQopmBHXSsZVY5xsdlZkdH/Iey0BlcBYggMd4two7cZnKOK9vmy3nY0O5RGH99z1PCeTpPqszUYg==, tarball: https://artifactory.devops.xiaohongshu.com/artifactory/api/npm/npm-public/lru.min/-/lru.min-1.1.2.tgz}
+    engines: {bun: '>=1.0.0', deno: '>=1.30.0', node: '>=8.0.0'}
+
   make-dir@3.1.0:
     resolution: {integrity: sha1-QV6WcEazp/HRhSd9hKpYIDcmoT8=, tarball: https://artifactory.devops.xiaohongshu.com/artifactory/api/npm/npm-public/make-dir/download/make-dir-3.1.0.tgz}
     engines: {node: '>=8'}
@@ -680,6 +712,14 @@ packages:
 
   ms@2.1.3:
     resolution: {integrity: sha1-V0yBOM4dK1hh8LRFedut1gxmFbI=, tarball: https://artifactory.devops.xiaohongshu.com/artifactory/api/npm/npm-public/ms/download/ms-2.1.3.tgz}
+
+  mysql2@3.13.0:
+    resolution: {integrity: sha512-M6DIQjTqKeqXH5HLbLMxwcK5XfXHw30u5ap6EZmu7QVmcF/gnh2wS/EOiQ4MTbXz/vQeoXrmycPlVRM00WSslg==, tarball: https://artifactory.devops.xiaohongshu.com/artifactory/api/npm/npm-public/mysql2/-/mysql2-3.13.0.tgz}
+    engines: {node: '>= 8.0'}
+
+  named-placeholders@1.1.3:
+    resolution: {integrity: sha1-31lXmaNmVNpV3aYVK6ehN60dk1E=, tarball: https://artifactory.devops.xiaohongshu.com/artifactory/api/npm/npm-public/named-placeholders/download/named-placeholders-1.1.3.tgz}
+    engines: {node: '>=12.0.0'}
 
   negotiator@0.6.3:
     resolution: {integrity: sha1-WOMjpy/twNb5zU0x/kn1FHlZDM0=, tarball: https://artifactory.devops.xiaohongshu.com/artifactory/api/npm/npm-public/negotiator/download/negotiator-0.6.3.tgz}
@@ -803,6 +843,9 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
+  seq-queue@0.0.5:
+    resolution: {integrity: sha1-1WgS4cAXpuTnw+Ojeh2m143TyT4=, tarball: https://artifactory.devops.xiaohongshu.com/artifactory/api/npm/npm-public/seq-queue/download/seq-queue-0.0.5.tgz}
+
   setprototypeof@1.2.0:
     resolution: {integrity: sha1-ZsmiSnP5/CjL5msJ/tPTPcrxtCQ=, tarball: https://artifactory.devops.xiaohongshu.com/artifactory/api/npm/npm-public/setprototypeof/download/setprototypeof-1.2.0.tgz}
 
@@ -821,6 +864,10 @@ packages:
   side-channel@1.1.0:
     resolution: {integrity: sha512-ZX99e6tRweoUXqR+VBrslhda51Nh5MTQwou5tnUDgbtyM0dBgmhEDtWGP/xbKn6hqfPRHujUNwz5fy/wbbhnpw==, tarball: https://artifactory.devops.xiaohongshu.com/artifactory/api/npm/npm-public/side-channel/-/side-channel-1.1.0.tgz}
     engines: {node: '>= 0.4'}
+
+  sqlstring@2.3.3:
+    resolution: {integrity: sha1-Ldwh8DvOLDh+1gaA5zmSLGV1HQw=, tarball: https://artifactory.devops.xiaohongshu.com/artifactory/api/npm/npm-public/sqlstring/download/sqlstring-2.3.3.tgz}
+    engines: {node: '>= 0.6'}
 
   sshpk@1.18.0:
     resolution: {integrity: sha512-2p2KJZTSqQ/I3+HX42EpYOa2l3f8Erv8MWKsy2I9uf4wA7yFIkXRffYdsx86y6z4vHtV8u7g+pPlr8/4ouAxsQ==, tarball: https://artifactory.devops.xiaohongshu.com/artifactory/api/npm/npm-public/sshpk/-/sshpk-1.18.0.tgz}
@@ -1152,6 +1199,8 @@ snapshots:
 
   aws-sign2@0.7.0: {}
 
+  aws-ssl-profiles@1.1.2: {}
+
   aws4@1.13.2: {}
 
   bcrypt-pbkdf@1.0.2:
@@ -1246,6 +1295,8 @@ snapshots:
   delayed-stream@1.0.0: {}
 
   delegates@1.0.0: {}
+
+  denque@2.1.0: {}
 
   depd@1.1.2: {}
 
@@ -1355,6 +1406,10 @@ snapshots:
 
   function-bind@1.1.2: {}
 
+  generate-function@2.3.1:
+    dependencies:
+      is-property: 1.0.2
+
   generic-pool@3.9.0: {}
 
   get-intrinsic@1.2.7:
@@ -1446,6 +1501,10 @@ snapshots:
     dependencies:
       safer-buffer: 2.1.2
 
+  iconv-lite@0.6.3:
+    dependencies:
+      safer-buffer: 2.1.2
+
   inflation@2.1.0: {}
 
   inherits@2.0.1: {}
@@ -1460,6 +1519,8 @@ snapshots:
       safe-regex-test: 1.1.0
 
   is-obj@2.0.0: {}
+
+  is-property@1.0.2: {}
 
   is-regex@1.2.1:
     dependencies:
@@ -1548,6 +1609,12 @@ snapshots:
 
   lodash.merge@4.6.2: {}
 
+  long@5.3.1: {}
+
+  lru-cache@7.18.3: {}
+
+  lru.min@1.1.2: {}
+
   make-dir@3.1.0:
     dependencies:
       semver: 6.3.1
@@ -1567,6 +1634,22 @@ snapshots:
   mimic-fn@3.1.0: {}
 
   ms@2.1.3: {}
+
+  mysql2@3.13.0:
+    dependencies:
+      aws-ssl-profiles: 1.1.2
+      denque: 2.1.0
+      generate-function: 2.3.1
+      iconv-lite: 0.6.3
+      long: 5.3.1
+      lru.min: 1.1.2
+      named-placeholders: 1.1.3
+      seq-queue: 0.0.5
+      sqlstring: 2.3.3
+
+  named-placeholders@1.1.3:
+    dependencies:
+      lru-cache: 7.18.3
 
   negotiator@0.6.3: {}
 
@@ -1694,6 +1777,8 @@ snapshots:
 
   semver@7.7.1: {}
 
+  seq-queue@0.0.5: {}
+
   setprototypeof@1.2.0: {}
 
   side-channel-list@1.0.0:
@@ -1723,6 +1808,8 @@ snapshots:
       side-channel-list: 1.0.0
       side-channel-map: 1.0.1
       side-channel-weakmap: 1.0.2
+
+  sqlstring@2.3.3: {}
 
   sshpk@1.18.0:
     dependencies:

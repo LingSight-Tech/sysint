@@ -1,7 +1,7 @@
 import Koa from 'koa'
 import { bodyParser } from '@koa/bodyparser'
 import cors from '@koa/cors'
-import { defaultStaticJsonFileConfigCenter as config } from './infra/config.mjs'
+import { defaultStaticJsonFileConfigCenter as config } from './infra/config/bootstrap.mjs'
 import { router } from './router/index.mjs'
 import { amapProxy } from './middleware/index.mjs'
 

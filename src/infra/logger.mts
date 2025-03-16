@@ -1,4 +1,4 @@
-import { defaultStaticJsonFileConfigCenter as config } from "./config.mjs"
+import { defaultStaticJsonFileConfigCenter as config } from "./config/bootstrap.mjs"
 
 export const logger = {
   info: (message: string) => {
