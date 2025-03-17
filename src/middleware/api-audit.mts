@@ -14,6 +14,7 @@ export const apiAudit: Koa.Middleware = async (ctx, next) => {
   logger.info(`request ${requestId}`, {
     method: ctx.method,
     url: ctx.url,
+    path: ctx.path,
     headers: ctx.headers,
     requestBody: ctx.request.body,
     query: ctx.query,
@@ -27,6 +28,7 @@ export const apiAudit: Koa.Middleware = async (ctx, next) => {
     logger.error(`response error ${requestId}`, e as Error, {
       method: ctx.method,
       url: ctx.url,
+      path: ctx.path,
       headers: ctx.headers,
       requestBody: ctx.request.body,
       query: ctx.query,
@@ -44,6 +46,7 @@ export const apiAudit: Koa.Middleware = async (ctx, next) => {
   logger.info(`response success ${requestId}`, {
     method: ctx.method,
     url: ctx.url,
+    path: ctx.path,
     headers: ctx.headers,
     requestBody: ctx.request.body,
     query: ctx.query,
