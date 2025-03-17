@@ -35,7 +35,7 @@ class SqlDatabaseConfigCenter implements ConfigCenter {
     setTimeout(async () => {
       await this.refresh()
       this.scheduleRefresh()
-    }, 5_000)
+    }, 30_000)
   }
 
   private async refresh(): Promise<void> {
@@ -51,14 +51,15 @@ class SqlDatabaseConfigCenter implements ConfigCenter {
             try {
               listener?.callback?.(this.localStore[config.key], config.value)
             } catch (e) {
-              logger.error(`SqlDatabaseConfigCenter_init: Failed to notify listener for key ${config.key}`, e as Error)
+              logger.error(`SqlDatabaseConfigCenter_refresh: Failed to notify listener for key ${config.key}`, e as Error)
             }
           })
         }
       }
       this.localStore = newStore
+      logger.info('SqlDatabaseConfigCenter_refresh: Config loaded from database', { config: this.localStore })
     } catch (e) {
-      logger.error('SqlDatabaseConfigCenter_init: Failed to load config from database', e as Error)
+      logger.error('SqlDatabaseConfigCenter_refresh: Failed to load config from database', e as Error)
     }
   }
 

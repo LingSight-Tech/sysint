@@ -1,14 +1,5 @@
-import proxy from 'koa-proxies'
 import { defaultStorage as store, User } from '../infra/storage.mjs'
 import Koa from 'koa'
-
-declare module 'koa' {
-  interface Context {
-    state: {
-      user: User
-    }
-  }
-}
 
 export const auth: Koa.Middleware = async (ctx, next) => {
   // token from header
