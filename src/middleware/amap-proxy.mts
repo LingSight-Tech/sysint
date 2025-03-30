@@ -1,16 +1,19 @@
 import proxy from 'koa-proxies'
-import { defaultStaticJsonFileConfigCenter as config } from '../infra/config/bootstrap.mjs'
+import { defaultMysqlConfigCenter as config } from '../infra/config/center.mjs'
 
-export const amapProxy = proxy('/_AMapService', {
+export const amapProxy = proxy('/amap-proxy', {
   target: 'https://restapi.amap.com/',
-  changeOrigin: true,
+  changeOrigin: false,
   logs: true,
   rewrite: path => {
-    // append jscode=xxx to query
+    // remove /amap-proxy prefix
+    const newPath = path.replace(/^\/amap-proxy/, '')
+
+    // append key=xxx to query
     if (path.indexOf('?') === -1) {
-      return `${path}?jscode=${config.get('amap.jscode')}`
+      return `${newPath}?key=${config.get('amap.key')}`
     }
 
-    return `${path}&jscode=${config.get('amap.jscode')}`
+    return `${newPath}&key=${config.get('amap.key')}`
   }
 })
