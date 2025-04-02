@@ -1,12 +1,12 @@
 import proxy from 'koa-proxies'
+import Koa from 'koa'
 import { defaultMysqlConfigCenter as config } from '../infra/config/center.mjs'
 
-export const amapProxy = proxy('/amap-proxy', {
+const mdwFun = proxy('/amap-proxy', {
   target: 'https://restapi.amap.com/',
   changeOrigin: false,
   logs: true,
-  rewrite: path => {
-    // remove /amap-proxy prefix
+  rewrite: path => { // remove /amap-proxy prefix
     let newPath = path.replace(/^\/amap-proxy/, '')
     let amapKey = undefined
     if (newPath.startsWith('/mini/')) {
@@ -29,3 +29,17 @@ export const amapProxy = proxy('/amap-proxy', {
     return `${newPath}&key=${amapKey}`
   }
 })
+
+export const amapProxy: Koa.Middleware = (ctx, next) => {
+  try {
+    return mdwFun(ctx, next)
+  } catch (e) {
+    console.error('AmapProxy error', e)
+    ctx.status = 500
+    ctx.body = {
+      success: false,
+      message: 'AmapProxy error',
+      data: null
+    }
+  }
+}
