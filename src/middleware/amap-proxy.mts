@@ -7,10 +7,18 @@ export const amapProxy = proxy('/amap-proxy', {
   logs: true,
   rewrite: path => {
     // remove /amap-proxy prefix
-    const newPath = path.replace(/^\/amap-proxy/, '')
-    let amapKey = config.get('amap.key')
-    if (newPath.startsWith('/v5/place/around')) {
-      amapKey = config.get('amap.key.place')
+    let newPath = path.replace(/^\/amap-proxy/, '')
+    let amapKey = undefined
+    if (newPath.startsWith('/mini/')) {
+      amapKey = config.get('amap.key.mini')
+      newPath = newPath.replace(/^\/mini/, '')
+    } else if (newPath.startsWith('/web/')) {
+      amapKey = config.get('amap.key.web')
+      newPath = newPath.replace(/^\/web/, '')
+    }
+
+    if (!amapKey) {
+      throw new Error('Invalid amap proxy prefix')
     }
 
     // append key=xxx to query
