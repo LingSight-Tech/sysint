@@ -18,14 +18,15 @@ export class WechatService {
     unionId: string
     openId: string
   }> {
-    logger.info(`Logging in with js_code: ${code}`)
+    logger.info('WechatService: login with code: ' + code, { code })
     const result: WechatMiniProgramLoginResponse = await fetch(`https://api.weixin.qq.com/sns/jscode2session?appid=${this.appId}&secret=${this.secret}&js_code=${code}&grant_type=authorization_code`)
       .then(res => res.json()) as WechatMiniProgramLoginResponse
 
     if (result.errcode) {
-      logger.error(`Failed to login: ${result.errmsg}(${result.errcode}) with js_code: ${code}`)
+      logger.error('WechatService: login failed with code: ' + code + ', ' + result.errmsg + '(' + result.errcode + ')')
       throw new BusinessException(500, `Failed to login: ${result.errmsg}(${result.errcode}) with js_code: ${code}`)
     }
+    logger.info('WechatService: login success', { result })
 
     return {
       sessionKey: result.session_key,
