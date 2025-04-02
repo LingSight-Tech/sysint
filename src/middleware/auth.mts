@@ -36,7 +36,7 @@ export const auth: Koa.Middleware = async (ctx, next) => {
 
   const user = await store.getUserBySessionKey(token)
   logger.info('AuthMiddleware: getUser', { token, user })
-  if (!user) {
+  if (isEmptyObjOrNull(user)) {
     ctx.status = 401
     ctx.body = {
       success: false,
@@ -48,4 +48,8 @@ export const auth: Koa.Middleware = async (ctx, next) => {
 
   ctx.state.user = user
   await next()
+}
+
+function isEmptyObjOrNull(user: User | undefined) {
+  return user == undefined || Object.keys(user).length === 0
 }
