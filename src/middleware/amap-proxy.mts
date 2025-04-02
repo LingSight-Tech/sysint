@@ -30,9 +30,9 @@ const mdwFun = proxy('/amap-proxy', {
   }
 })
 
-export const amapProxy: Koa.Middleware = (ctx, next) => {
+export const amapProxy: Koa.Middleware = async (ctx, next) => {
   try {
-    return mdwFun(ctx, next)
+    return await mdwFun(ctx, next)
   } catch (e) {
     console.error('AmapProxy error', e)
     ctx.status = 500
