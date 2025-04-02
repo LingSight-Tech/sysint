@@ -18,8 +18,18 @@ export const auth: Koa.Middleware = async (ctx, next) => {
     return
   }
 
-  if (token.startsWith('Bearer ')) {
-    token = token.substring(7)
+  if (token.startsWith('Bearer')) {
+    token = token.substring(6).trim()
+  }
+
+  if (token.length === 0) {
+    ctx.status = 401
+    ctx.body = {
+      success: false,
+      message: 'Unauthorized',
+      data: null
+    }
+    return
   }
 
   const user = await store.getUserBySessionKey(token)
