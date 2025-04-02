@@ -1,6 +1,7 @@
 import { logger } from '../infra/logger.mjs'
 import { defaultStorage as store, User } from '../infra/storage.mjs'
 import Koa from 'koa'
+import { isEmptyObjOrNull } from '../util/sugar.mjs'
 
 export const auth: Koa.Middleware = async (ctx, next) => {
   // token from header
@@ -48,8 +49,4 @@ export const auth: Koa.Middleware = async (ctx, next) => {
 
   ctx.state.user = user
   await next()
-}
-
-function isEmptyObjOrNull(user: User | undefined) {
-  return user == undefined || Object.keys(user).length === 0
 }

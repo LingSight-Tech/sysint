@@ -4,6 +4,7 @@ import { BusinessException } from '../error/error.mjs'
 import { defaultStorage as store } from '../infra/storage.mjs'
 import { uuid } from '../util/random.mjs'
 import { logger } from '../infra/logger.mjs'
+import { isEmptyObjOrNull } from '../util/sugar.mjs'
 
 export const wechatRouter = new Router()
 
@@ -22,7 +23,7 @@ wechatRouter.post('/login', async (ctx, next) => {
     const result = await wechatService.login(ctx.request.body?.code)
     const token = uuid()
     const user = await store.getUserByUnionId(result.unionId)
-    if (!user) {
+    if (isEmptyObjOrNull(user)) {
       await store.createUser({
         openId: result.openId,
         unionId: result.unionId,
