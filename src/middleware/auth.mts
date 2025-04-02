@@ -1,3 +1,4 @@
+import { logger } from '../infra/logger.mjs'
 import { defaultStorage as store, User } from '../infra/storage.mjs'
 import Koa from 'koa'
 
@@ -8,6 +9,7 @@ export const auth: Koa.Middleware = async (ctx, next) => {
   // if exists, parse it and set it to ctx.state.userSession
   // continue
   let token = ctx.get('Authorization')
+  logger.info('AuthMiddleware: token', { token })
   if (!token) {
     ctx.status = 401
     ctx.body = {
@@ -33,6 +35,7 @@ export const auth: Koa.Middleware = async (ctx, next) => {
   }
 
   const user = await store.getUserBySessionKey(token)
+  logger.info('AuthMiddleware: getUser', { token, user })
   if (!user) {
     ctx.status = 401
     ctx.body = {
