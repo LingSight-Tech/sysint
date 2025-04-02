@@ -5,7 +5,6 @@ import fetch from 'node-fetch'
 
 interface WechatMiniProgramLoginResponse {
   session_key: string
-  unionid: string
   errmsg: string
   openid: string
   errcode: number
@@ -15,7 +14,6 @@ export class WechatService {
   constructor(private appId: string, private secret: string) { }
   async login(code: string): Promise<{
     sessionKey: string
-    unionId: string
     openId: string
   }> {
     logger.info('WechatService: login with code: ' + code, { code })
@@ -30,7 +28,6 @@ export class WechatService {
 
     return {
       sessionKey: result.session_key,
-      unionId: result.unionid,
       openId: result.openid
     }
   }

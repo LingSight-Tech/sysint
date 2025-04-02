@@ -5,9 +5,9 @@ export interface Storage {
   updateConversation(conversationId: string, historyJson: string): Promise<void>;
   getConversation(conversationId: string): Promise<Conversation | undefined>;
   createConversation(userId: number, conversationId: string, initConversion: string): Promise<void>;
-  updateUserSessionKey(unionId: string, token: string): Promise<void>;
-  createUser(user: { openId: string; unionId: string; sessionKey: string }): Promise<User | undefined>;
-  getUserByUnionId(unionId: string): Promise<User | undefined>;
+  updateUserSessionKey(openId: string, token: string): Promise<void>;
+  createUser(user: { openId: string; sessionKey: string }): Promise<User | undefined>;
+  getUserByOpenId(openId: string): Promise<User | undefined>;
   getUserBySessionKey(sessionKey: string): Promise<User | undefined>;
   init(): Promise<void>;
 
@@ -33,18 +33,18 @@ export class MysqlStorage implements Storage {
     await this.db.sql(`insert into conversation (uuid, user_id, history_json) values (?, ?, ?)`, [conversationId, userId, initConversion])
   }
 
-  async updateUserSessionKey(unionId: string, token: string): Promise<void> {
-    await this.db.sql(`update user set session_key = ? where union_id = ?`, [token, unionId]) as any
+  async updateUserSessionKey(openId: string, token: string): Promise<void> {
+    await this.db.sql(`update user set session_key = ? where open_id = ?`, [token, openId]) as any
   }
 
-  async createUser(user: { openId: string; unionId: string; sessionKey: string }): Promise<User | undefined> {
-    await this.db.sql(`insert into user (open_id, union_id, session_key) values (?, ?, ?)`, [user.openId, user.unionId, user.sessionKey])
-    const result = await this.db.sql(`select * from user where union_id = ?`, [user.unionId]) as any[]
+  async createUser(user: { openId: string; sessionKey: string }): Promise<User | undefined> {
+    await this.db.sql(`insert into user (open_id, session_key) values (?, ?, ?)`, [user.openId, user.sessionKey])
+    const result = await this.db.sql(`select * from user where open_id = ?`, [user.openId]) as any[]
     return toCamlCase(result[0])
   }
 
-  async getUserByUnionId(unionId: string): Promise<User | undefined> {
-    const result = await this.db.sql(`select * from user where union_id = ?`, [unionId]) as any[]
+  async getUserByOpenId(openId: string): Promise<User | undefined> {
+    const result = await this.db.sql(`select * from user where open_id = ?`, [openId]) as any[]
     return toCamlCase(result[0])
   }
   async getUserBySessionKey(sessionKey: string): Promise<User | undefined> {
@@ -60,7 +60,6 @@ export class MysqlStorage implements Storage {
 export interface User {
   id: number
   openId: string
-  unionId: string
   sessionKey: string
   createdAt: Date
   updatedAt: Date

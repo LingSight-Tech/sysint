@@ -22,15 +22,14 @@ wechatRouter.post('/login', async (ctx, next) => {
   try {
     const result = await wechatService.login(ctx.request.body?.code)
     const token = uuid()
-    const user = await store.getUserByUnionId(result.unionId)
+    const user = await store.getUserByOpenId(result.openId)
     if (isEmptyObjOrNull(user)) {
       await store.createUser({
         openId: result.openId,
-        unionId: result.unionId,
         sessionKey: token
       })
     } else {
-      await store.updateUserSessionKey(result.unionId, token)
+      await store.updateUserSessionKey(result.openId, token)
     }
 
     ctx.body = {
@@ -62,6 +61,5 @@ wechatRouter.post('/login', async (ctx, next) => {
 
 export interface UserSession {
   sessionKey: string
-  unionId: string
   openId: string
 }
